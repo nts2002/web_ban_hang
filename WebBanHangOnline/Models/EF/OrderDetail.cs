@@ -11,11 +11,9 @@ namespace WebBanHangOnline.Models.EF
     public class OrderDetail: CommonAbstract
     {
         [Key]
-        [Column(Order =0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; } 
         public int OrderId { get; set; }
-        [Key]
-        [Column(Order = 1)]
         public int ProductId { get; set; } 
         public decimal Price { get; set; } 
         public int Quantity { get; set; }
