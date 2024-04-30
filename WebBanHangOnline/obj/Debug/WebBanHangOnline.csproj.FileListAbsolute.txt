@@ -216,3 +216,7 @@ F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.pdb
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.CreatedDatabase.resources
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.CreatedDatabase.resources
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateCategory.resources
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
