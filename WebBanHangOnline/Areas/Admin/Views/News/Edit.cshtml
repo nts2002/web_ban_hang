@@ -1,8 +1,9 @@
-﻿@model WebBanHangOnline.Models.EF.Category
+﻿@model WebBanHangOnline.Models.EF.News
 @{
-    ViewBag.Title = "Cập nhật danh mục";
+    ViewBag.Title = "Sửa tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 @section naviheader{
     <!-- Left navbar links -->
@@ -14,7 +15,7 @@
             <a href="/admin/home" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/Category" class="nav-link">Danh mục</a>
+            <a href="/admin/news" class="nav-link">Tin tức</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Cập nhật</a>
@@ -27,12 +28,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Cập nhật danh mục</h1>
+                <h1>Tin tức</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Cập nhật</li>
+                    <li class="breadcrumb-item active">Tin tức</li>
                 </ol>
             </div>
         </div>
@@ -59,7 +60,7 @@
 
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Edit", "News", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
@@ -67,36 +68,42 @@
                     <!-- your steps content here -->
                     <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên danh mục</label>
-                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                            <label for="exampleInputEmail1">Tên đề</label>
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên tiêu đề tin" })
                             @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
-                            @*<input type="email" class="form-control" placeholder="Enter email">*@
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Ảnh đại diện</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    @Html.TextBoxFor(x => x.Image, new { @id = "txtImage", @class = "form-control" })
+                                </div>
+                                <div class="input-group-append">
+                                    <input type="button" value="Tải ảnh" onclick="BrowserServer('txtImage')" />
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
                             @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
-                            @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Thứ tự</label>
-                            @Html.TextBoxFor(x => x.Position, new { @class = "form-control", @Value = 1 })
+                            <label for="exampleInputPassword1">Chi tiết</label>
+                            @Html.TextAreaFor(x => x.Detail, new { @class = "form-control", @id = "txtDetail" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Seo tilte</label>
                             @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
-                            @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">SeoDescription</label>
                             @Html.TextAreaFor(x => x.SeoDescription, new { @class = "form-control" })
-                            @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">SeoKeyword</label>
                             @Html.TextAreaFor(x => x.SeoKeyword, new { @class = "form-control" })
-                            @*<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">*@
                         </div>
-                        <a href="/admin/category" class="btn btn-danger">Quay lại</a>
+                        <a href="/admin/news" class="btn btn-danger">Quay lại</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 }
@@ -113,3 +120,23 @@
 
 </section>
 <!-- /.content -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail',{
+                customConfig: 'content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowserServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+    </script>
+}
+
+
