@@ -220,3 +220,10 @@ C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHan
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateCategory.resources
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateCategory.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.dll
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.pdb
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\CKFinder.dll
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\CKFinder.pdb
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources

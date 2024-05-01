@@ -22,7 +22,11 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// HIển thị form thêm mới. Trả về view <<Add>> và model
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Category model) 
@@ -31,12 +35,64 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
             {
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
                 dbConect.Categories.Add(model);
                 dbConect.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(model);
         }    
+        /// <summary>
+        /// Link đến trang sửa theo Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Edit(int id)
+        {
+            var item = dbConect.Categories.Find(id);
+            return View(item);   
+        }
+
+        /// <summary>
+        /// Form sửa theo Id
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category model)
+        {
+            if (ModelState.IsValid)
+            {
+                dbConect.Categories.Attach(model);
+                model.ModifiedDate = DateTime.Now;
+                model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
+                dbConect.Entry(model).Property(x=>x.Title).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.Description).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.Alias).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.SeoDescription).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.SeoKeyword).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.SeoTitle).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.Position).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.ModifiedDate).IsModified = true;
+                dbConect.Entry(model).Property(x=>x.ModeifiedBy).IsModified = true;
+                dbConect.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var item = dbConect.Categories.Find(id);
+            if (item != null)
+            {
+                dbConect.Categories.Remove(item);
+                dbConect.SaveChanges();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
 
     }
 }
