@@ -61,6 +61,7 @@
                         <th>STT</th>
                         <th>Tên danh mục</th>
                         <th>Thứ tự</th>
+                        @*<th>Hiển thị</th>*@
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -70,13 +71,17 @@
                         var i = 1;
                         foreach (var item in Model)
                         {
+                            //var strCheck = item.IsActive ? "<a> <i class= 'fa fa-check text-success'></i> </a>" : "<a> <i class= 'fas fa-times text-danger'></i> </a>";
                             <tr id="trow_@item.Id">
                                 <td>@i</td>
                                 <td>@item.Title</td>
                                 <td>@item.Position</td>
-                                <td>
-                                    <a href="/admin/category/edit/@item.Id" class ="btn btn-sm btn-primary ">Sửa</a>
-                                    <a href="#" data-id ="@item.Id" class ="btn btn-sm btn-danger btnDelete">Xóa</a>
+                                @*<td class="text-center">
+                                    @Html.Raw(strCheck)
+                                </td>*@
+                                <td >
+                                    <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
+                                    <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
                             i++;

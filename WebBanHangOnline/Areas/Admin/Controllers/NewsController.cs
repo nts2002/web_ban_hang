@@ -64,22 +64,41 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                dbConect.News.Attach(model);
+                //dbConect.News.Attach(model);
+                //model.ModifiedDate = DateTime.Now;
+                //model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
+                //dbConect.Entry(model).Property(x => x.Title).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.Image).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.Description).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.Alias).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.SeoDescription).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.SeoKeyword).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.SeoTitle).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
+                //dbConect.Entry(model).Property(x => x.ModeifiedBy).IsModified = true;
+                //dbConect.SaveChanges();
+
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
-                dbConect.Entry(model).Property(x => x.Title).IsModified = true;
-                //dbConect.Entry(model).Property(x => x.CategoryId).IsModified = true;
-                dbConect.Entry(model).Property(x => x.Description).IsModified = true;
-                dbConect.Entry(model).Property(x => x.Alias).IsModified = true;
-                dbConect.Entry(model).Property(x => x.SeoDescription).IsModified = true;
-                dbConect.Entry(model).Property(x => x.SeoKeyword).IsModified = true;
-                dbConect.Entry(model).Property(x => x.SeoTitle).IsModified = true;
-                dbConect.Entry(model).Property(x => x.ModifiedDate).IsModified = true;
-                dbConect.Entry(model).Property(x => x.ModeifiedBy).IsModified = true;
+                dbConect.News.Attach(model);
+                dbConect.Entry(model).State = System.Data.Entity.EntityState.Modified;// Dòng này thay cho code từ dòng 70 ->78
                 dbConect.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        public ActionResult IsActive(int id)
+        {
+            var item = dbConect.News.Find(id);
+            if (item != null)
+            {
+                item.IsActive = !item.IsActive;
+                dbConect.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                dbConect.SaveChanges();
+                return Json(new { success = true, isActive = item.IsActive});
+            }
+            return Json(new { success = false});
         }
     }
 }
