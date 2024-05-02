@@ -227,3 +227,4 @@ F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.pdb
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\CKFinder.dll
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\CKFinder.pdb
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources
