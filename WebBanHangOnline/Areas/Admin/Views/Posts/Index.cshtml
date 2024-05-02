@@ -1,8 +1,9 @@
-﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.News>
+﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.Posts>
 @using PagedList.Mvc;
 @using PagedList;
+
 @{
-    ViewBag.Title = "Danh sách tin tức";
+    ViewBag.Title = "Bài viết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +17,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/posts" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -26,7 +27,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản lý danh sách tin tức</h1>
+                <h1>Quản lý @ViewBag.Title</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -53,7 +54,7 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                         <i class="fas fa-times"></i>
                     </button>*@
-                <a href="/admin/news/add" class="btn btn-info">Thêm mới</a>
+                <a href="/admin/posts/add" class="btn btn-info">Thêm mới</a>
                 <a href="#" id="btnDeleteAll" class="btn btn-danger">Xóa</a>
             </div>
         </div>
@@ -63,7 +64,7 @@
                     <tr>
                         <th> <input type="checkbox" id="SelectAll" /> </th>
                         <th>STT</th>
-                        <th style="width: 100px;">Hình ảnh</th>
+                        <th>Hình ảnh</th>
                         <th>Tiêu đề</th>
                         <th>Ngày tạo</th>
                         <th>Hiển thị</th>
@@ -73,9 +74,10 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = 1;
+                        var i = (ViewBag.Page -1)*ViewBag.PageSize +1;
                         foreach (var item in Model)
                         {
+                            
                             var strCheck = item.IsActive ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
@@ -87,7 +89,7 @@
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>
                                 <td>
-                                    <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
+                                    <a href="/admin/posts/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>
@@ -97,7 +99,7 @@
                     else
                     {
                         <tr>
-                            <td colspan="4">Không có bản ghi nào</td>
+                            <td colspan="7">Không có bản ghi nào</td>
                         </tr>
                     }
 
@@ -125,7 +127,7 @@
                 var conf = confirm('Bạn có muốn xóa bản ghi này không');
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/news/delete',
+                        url: '/admin/posts/delete',
                         type: 'POST',
                         data: { id: id }, // dữ liệu được truyền lên NewsController
                         success: function (result) {
@@ -164,7 +166,7 @@
                     //Đoạn bên dưới này đây sẽ đưa chúng ta đến với hàm DeleteAll() trong <NewsController>
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll', //Đường link đến NewsController
+                            url: '/admin/posts/deleteAll', //Đường link đến NewsController
                             type: 'POST',
                             data: { ids: str }, //Dữ liệu gửi lên NewsController
                             success: function (result) {
@@ -197,7 +199,7 @@
                 var btn = $(this);
                 var id = $(this).data("id");
                 $.ajax({
-                    url: '/admin/news/IsActive',
+                    url: '/admin/posts/IsActive',
                     type: 'POST',
                     data: { id: id },
                     success: function (result) {
@@ -215,3 +217,4 @@
         });
     </script>
 }
+

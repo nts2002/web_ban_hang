@@ -9,19 +9,21 @@ using WebBanHangOnline.Models.EF;
 
 namespace WebBanHangOnline.Areas.Admin.Controllers
 {
-    public class NewsController : Controller
+    public class PostsController : Controller
     {
         ApplicationDbContext dbConect = new ApplicationDbContext();
-        // GET: Admin/News
+        // GET: Admin/Posts
         public ActionResult Index(int? page)
         {
-            var pageSize = 10;
+            var pageSize = 5;
             if (page == null)
             {
                 page = 1;
             }
-            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
-            var item = dbConect.News.OrderByDescending(x => x.Id).ToPagedList(pageIndex, pageSize);
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1; 
+            var item = dbConect.Posts.OrderByDescending(x=>x.Id).ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
             return View(item);
         }
 
@@ -32,7 +34,7 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(News model)
+        public ActionResult Add(Posts model)
         {
             if (ModelState.IsValid)
             {
@@ -40,7 +42,7 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
                 model.ModifiedDate = DateTime.Now;
                 model.CategoryId = 2;
                 model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
-                dbConect.News.Add(model);
+                dbConect.Posts.Add(model);
                 dbConect.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -49,10 +51,10 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 
         public ActionResult Delete(int id)
         {
-            var item = dbConect.News.Find(id);
+            var item = dbConect.Posts.Find(id);
             if (item != null)
             {
-                dbConect.News.Remove(item);
+                dbConect.Posts.Remove(item);
                 dbConect.SaveChanges();
                 return Json(new { success = true });
             }
@@ -61,13 +63,13 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 
         public ActionResult Edit(int id)
         {
-            var item = dbConect.News.Find(id);
+            var item = dbConect.Posts.Find(id);
             return View(item);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(News model)
+        public ActionResult Edit(Posts model)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +89,7 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
-                dbConect.News.Attach(model);
+                dbConect.Posts.Attach(model);
                 dbConect.Entry(model).State = System.Data.Entity.EntityState.Modified;// Dòng này thay cho code từ dòng 70 ->78
                 dbConect.SaveChanges();
                 return RedirectToAction("Index");
@@ -97,18 +99,19 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 
         public ActionResult IsActive(int id)
         {
-            var item = dbConect.News.Find(id);
+            var item = dbConect.Posts.Find(id);
             if (item != null)
             {
                 item.IsActive = !item.IsActive;
                 dbConect.Entry(item).State = System.Data.Entity.EntityState.Modified;
                 dbConect.SaveChanges();
-                return Json(new { success = true, isActive = item.IsActive});
+                return Json(new { success = true, isActive = item.IsActive });
             }
-            return Json(new { success = false});
+            return Json(new { success = false });
         }
 
-        public ActionResult DeleteAll(string ids) {
+        public ActionResult DeleteAll(string ids)
+        {
 
             if (!string.IsNullOrEmpty(ids))
             {
@@ -117,15 +120,15 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
                 {
                     foreach (var item in items)
                     {
-                        var obj = dbConect.News.Find(Convert.ToInt32(item));
-                        dbConect.News.Remove(obj);
-                        dbConect.SaveChanges();  
+                        var obj = dbConect.Posts.Find(Convert.ToInt32(item));
+                        dbConect.Posts.Remove(obj);
+                        dbConect.SaveChanges();
                     }
                 }
                 return Json(new { success = true });
             }
             return Json(new { success = false });
-            
+
         }
     }
 }
