@@ -67,15 +67,16 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
                 dbConect.Categories.Attach(model);
                 model.ModifiedDate = DateTime.Now;
                 model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
-                dbConect.Entry(model).Property(x=>x.Title).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.Description).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.Alias).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.SeoDescription).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.SeoKeyword).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.SeoTitle).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.Position).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.ModifiedDate).IsModified = true;
-                dbConect.Entry(model).Property(x=>x.ModeifiedBy).IsModified = true;
+                dbConect.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                //dbConect.Entry(model).Property(x=>x.Title).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.Description).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.Alias).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.SeoDescription).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.SeoKeyword).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.SeoTitle).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.Position).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.ModifiedDate).IsModified = true;
+                //dbConect.Entry(model).Property(x=>x.ModeifiedBy).IsModified = true;
                 dbConect.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -93,6 +94,20 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
             }
             return Json(new { success = false });
         }
+
+        public ActionResult IsActive(int id)
+        {
+            var item = dbConect.Categories.Find(id);
+            if (item != null)
+            {
+                item.IsActive = !item.IsActive;
+                dbConect.Entry(item).State = System.Data.Entity.EntityState.Modified;
+                dbConect.SaveChanges();
+                return Json(new { success = true, isActive = item.IsActive });
+            }
+            return Json(new { success = false });
+        }
+
 
     }
 }

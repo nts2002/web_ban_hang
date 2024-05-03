@@ -11,18 +11,25 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
 {
     public class NewsController : Controller
     {
-        ApplicationDbContext dbConect = new ApplicationDbContext();
+        ApplicationDbContext dbConect = new ApplicationDbContext();// Khai bao database
         // GET: Admin/News
-        public ActionResult Index(int? page)
+        public ActionResult Index(string SearchText, int? page)
         {
             var pageSize = 10;
             if (page == null)
             {
                 page = 1;
             }
+            IEnumerable<News> items = dbConect.News.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                items = items.Where(x => x.Alias.Contains(SearchText) || x.Title.Contains(SearchText));
+            }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
-            var item = dbConect.News.OrderByDescending(x => x.Id).ToPagedList(pageIndex, pageSize);
-            return View(item);
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
 
         public ActionResult Add()

@@ -59,6 +59,20 @@
             </div>
         </div>
         <div class="card-body">
+            <div class="row" style="margin-bottom:10px">
+                <div class="col-4">
+                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("Searchtext", "", new { @class = "form-control" })
+                            @*<input type="text" name="searchtext" class="form-control"> Dòng này được thay bởi dòng code ngay trên đầu nó*@
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
             <table class="table table-bordered table-hover dataTable dtr-inline">
                 <thead>
                     <tr>
@@ -74,10 +88,10 @@
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = (ViewBag.Page -1)*ViewBag.PageSize +1;
+                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
                         foreach (var item in Model)
                         {
-                            
+
                             var strCheck = item.IsActive ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
