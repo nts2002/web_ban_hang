@@ -1,8 +1,8 @@
-﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.News>
+﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.ProductCategory>
 @using PagedList.Mvc;
 @using PagedList;
 @{
-    ViewBag.Title = "Danh sách tin tức";
+    ViewBag.Title = "Danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -59,16 +59,16 @@
         <div class="card-body">
             <div class="row" style="margin-bottom:10px">
                 <div class="col-4">
-                        @using (Html.BeginForm("Index", "News", FormMethod.Get, new { }))
-                        {
-                            <div class="input-group input-group-sm">
-                                @Html.TextBox("Searchtext","", new {@class = "form-control"})
-                                @*<input type="text" name="searchtext" class="form-control"> Dòng này được thay bởi dòng code ngay trên đầu nó*@
-                                <span class="input-group-append">
-                                    <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
-                                </span>
-                            </div>
-                        }
+                    @using (Html.BeginForm("Index", "ProductCategory", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("Searchtext", "", new { @class = "form-control" })
+                            @*<input type="text" name="searchtext" class="form-control"> Dòng này được thay bởi dòng code ngay trên đầu nó*@
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
                 </div>
             </div>
             <table class="table table-bordered table-hover dataTable dtr-inline">
@@ -79,8 +79,8 @@
                         <th style="width: 100px;">Hình ảnh</th>
                         <th>Tiêu đề</th>
                         <th>Ngày tạo</th>
-                        <th>Hiển thị</th>
-                        <th style="width: 150px;">Hành động</th>
+                        @*<th>Hiển thị</th>
+                        <th style="width: 150px;">Hành động</th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -89,16 +89,15 @@
                         var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
                         foreach (var item in Model)
                         {
-                            var strCheck = item.IsActive ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
+                            //var strCheck = item.Is ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
                                 <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td class="text-center">@i</td>
-                                <td class="text-center"><img src="@item.Image" width="50" /></td>
                                 <td>@item.Title</td>
                                 <td>@item.CreatedDate.ToString("dd/MM/yyyy")</td>
-                                <td class="text-center">
+                                @*<td class="text-center">
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
-                                </td>
+                                </td>*@
                                 <td>
                                     <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
@@ -112,11 +111,11 @@
                         <tr>
                             <td colspan="7">Không có bản ghi nào</td>
                         </tr>
-                        }
+                    }
 
                 </tbody>
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            @*@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))*@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -138,7 +137,7 @@
                 var conf = confirm('Bạn có muốn xóa bản ghi này không');
                 if (conf === true) {
                     $.ajax({
-                        url: '/admin/news/delete',
+                        url: '/admin/productcategory/delete',
                         type: 'POST',
                         data: { id: id }, // dữ liệu được truyền lên NewsController
                         success: function (result) {
@@ -177,7 +176,7 @@
                     //Đoạn bên dưới này đây sẽ đưa chúng ta đến với hàm DeleteAll() trong <NewsController>
                     if (conf === true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll', //Đường link đến NewsController
+                            url: '/admin/productcategory/deleteAll', //Đường link đến NewsController
                             type: 'POST',
                             data: { ids: str }, //Dữ liệu gửi lên NewsController
                             success: function (result) {
@@ -210,7 +209,7 @@
                 var btn = $(this);
                 var id = $(this).data("id");
                 $.ajax({
-                    url: '/admin/news/IsActive',
+                    url: '/admin/productcategory/IsActive',
                     type: 'POST',
                     data: { id: id },
                     success: function (result) {

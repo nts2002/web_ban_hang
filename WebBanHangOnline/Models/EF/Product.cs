@@ -37,6 +37,6 @@ namespace WebBanHangOnline.Models.EF
         public string SeoKeyword { get; set; }
         public bool IsActive { get; set; }
         public int Quantiry { get; set; }
-        public virtual ProductCategory Category { get; set; }
+        public virtual ProductCategory ProductCategory { get; set; }
     }
 }

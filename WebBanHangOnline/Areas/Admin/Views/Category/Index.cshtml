@@ -1,4 +1,6 @@
-﻿@model IEnumerable<WebBanHangOnline.Models.EF.Category>
+﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.Category>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -51,17 +53,33 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                         <i class="fas fa-times"></i>
                     </button>*@
-                <a href="/admin/category/add" class="btn btn-outline-primary">Thêm mới</a>
+                <a href="/admin/category/add" class="btn btn-info">Thêm mới</a>
+                <a href="#" id="btnDeleteAll" class="btn btn-danger">Xóa</a>
             </div>
         </div>
         <div class="card-body">
+            <div class="row" style="margin-bottom:10px">
+                <div class="col-4">
+                    @using (Html.BeginForm("Index", "Category", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("Searchtext", "", new { @class = "form-control" })
+                            @*<input type="text" name="searchtext" class="form-control"> Dòng này được thay bởi dòng code ngay trên đầu nó*@
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
             <table class="table table-bordered table-hover dataTable dtr-inline">
                 <thead>
                     <tr>
+                        <th> <input type="checkbox" id="SelectAll" /> </th>
                         <th>STT</th>
                         <th>Tên danh mục</th>
                         <th>Thứ tự</th>
-                        @*<th>Hiển thị</th>*@
+                        <th>Hiển thị</th>
                         <th>Hành động</th>
                     </tr>
                 </thead>
@@ -71,15 +89,16 @@
                         var i = 1;
                         foreach (var item in Model)
                         {
-                            //var strCheck = item.IsActive ? "<a> <i class= 'fa fa-check text-success'></i> </a>" : "<a> <i class= 'fas fa-times text-danger'></i> </a>";
+                            var strCheck = item.IsActive ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
                             <tr id="trow_@item.Id">
+                                <td><input type="checkbox" class="cbkItem" value="@item.Id" /></td>
                                 <td>@i</td>
                                 <td>@item.Title</td>
                                 <td>@item.Position</td>
-                                @*<td class="text-center">
-                                    @Html.Raw(strCheck)
-                                </td>*@
-                                <td >
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
+                                </td>
+                                <td>
                                     <a href="/admin/category/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
@@ -96,7 +115,7 @@
 
                 </tbody>
             </table>
-            
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -129,5 +148,82 @@
                 }
             });
         });
+
+        // Xử lý phần Active
+        $('tbody').on('click', '.btnActive', function (e) {
+            e.preventDefault();
+            var btn = $(this);
+            debugger;
+            var id = $(this).data("id");
+            $.ajax({
+                url: '/admin/category/IsActive',
+                type: 'POST',
+                data: { id: id },
+                success: function (result) {
+                    if (result.success) {
+                        if (result.isActive) {
+                            btn.html("<i class= 'fa fa-check text-success'></i>")
+                        } else {
+                            btn.html("<i class= 'fa fa-times text-danger'></i>")
+                        }
+                    }
+                }
+            });
+        });
+
+        //Xử lý phần chọn nhiều bản ghi
+        $('body').on('change', '#SelectAll', function () {
+            var checkStatus = this.checked;
+            var checkbox = $(this).parents('.card-body').find('tr td input:checkbox');
+            checkbox.each(function () {
+                this.checked = checkStatus;
+                if (this.checked) {
+                    checkbox.attr('selected', 'checked');
+                } else {
+                    checkbox.attr('selected', '');
+                }
+            });
+        });
+
+        //Xử lý xóa nhiều bản ghi
+        $('body').on('click', '#btnDeleteAll', function (e) {
+            e.preventDefault();
+            var str = "";
+            var i = 0;
+            var checkbox = $(this).parents('.card').find('tr td input:checkbox');
+            checkbox.each(function () {
+                if (this.checked) {
+                    checkbox.attr('selected', 'checked');
+                    var _id = $(this).val();
+                    if (i === 0) {
+                        str += _id;
+                    } else {
+                        str += "," + _id;
+                    }
+                    i++;
+                } else {
+                    checkbox.attr('selected', '');
+                }
+            });//Thực hiện chọn các bản ghi
+            debugger;
+            //Thực hiện gửi thông tin được chọn để xóa lên NewsControler
+            if (str.length > 0) {
+                var conf = confirm('Bạn có chắc chắn muốn xóa các bản ghi này không?')
+                //Đoạn bên dưới này đây sẽ đưa chúng ta đến với hàm DeleteAll() trong <NewsController>
+                if (conf === true) {
+                    $.ajax({
+                        url: '/admin/category/deleteAll', //Đường link đến NewsController
+                        type: 'POST',
+                        data: { ids: str }, //Dữ liệu gửi lên NewsController
+                        success: function (result) {
+                            if (result.success) {
+                                location.reload(); //Thành công thì load lại trang
+                            }
+                        }
+                    });
+                }
+            }
+        });//Kết thúc xử lý xóa nhiều bản ghi
+
     </script>
-    }
+}

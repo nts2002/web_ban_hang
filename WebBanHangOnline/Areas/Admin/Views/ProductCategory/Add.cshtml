@@ -1,8 +1,9 @@
-﻿@model WebBanHangOnline.Models.EF.Category
+﻿@model WebBanHangOnline.Models.EF.ProductCategory
 @{
-    ViewBag.Title = "Cập nhật danh mục";
+    ViewBag.Title = "Thêm mới danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 @section naviheader{
     <!-- Left navbar links -->
@@ -14,10 +15,10 @@
             <a href="/admin/home" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/Category" class="nav-link">Danh mục</a>
+            <a href="/admin/news" class="nav-link">Danh mục sản phẩm</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Cập nhật</a>
+            <a href="#" class="nav-link">Thêm mới danh mục sản phẩm</a>
         </li>
     </ul>
 }
@@ -27,12 +28,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Cập nhật danh mục</h1>
+                <h1>Thêm mới danh mục sản phẩm</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Cập nhật</li>
+                    <li class="breadcrumb-item"><a href="#">Danh mục sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
                 </ol>
             </div>
         </div>
@@ -45,48 +46,25 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Thông tin cập nhật</h3>
-
-            @*<div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>*@
+            <h3 class="card-title">Thông tin thêm mới danh mục sản phẩm</h3>
         </div>
 
         <div class="card-body">
             <div class="bs-stepper-content">
-                @using (Html.BeginForm("Edit", "Category", FormMethod.Post, new { }))
+                @using (Html.BeginForm("Add", "ProductCategory", FormMethod.Post, new { }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    @Html.HiddenFor(x => x.Id)
-                    @Html.HiddenFor(x => x.CreatedDate)
                     <!-- your steps content here -->
                     <div id="logins-part" class="content active dstepper-block" role="tabpanel" aria-labelledby="logins-part-trigger">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên danh mục</label>
-                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên danh mục" })
+                            <label for="exampleInputEmail1">Tiêu đề</label>
+                            @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @placeholder = "Tên tiêu đề tin" })
                             @Html.ValidationMessageFor(x => x.Title, null, new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Mô tả</label>
-                            @Html.TextAreaFor(x => x.Description, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Thứ tự</label>
-                            @Html.TextBoxFor(x => x.Position, new { @class = "form-control", @Value = 1 })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Seo tilte</label>
                             @Html.TextAreaFor(x => x.SeoTitle, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Hiển thị</label>
-                            @Html.CheckBoxFor(x => x.IsActive, new { @checked = "@checked" })
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">SeoDescription</label>
@@ -96,7 +74,7 @@
                             <label for="exampleInputPassword1">SeoKeyword</label>
                             @Html.TextAreaFor(x => x.SeoKeyword, new { @class = "form-control" })
                         </div>
-                        <a href="/admin/category" class="btn btn-danger">Quay lại</a>
+                        <a href="/admin/news" class="btn btn-danger">Quay lại</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 }
@@ -113,3 +91,21 @@
 
 </section>
 <!-- /.content -->
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail',{
+                customConfig: 'content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowserServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+    </script>
+}

@@ -51,6 +51,7 @@ F:\Projects\web_ban_hang\WebBanHangOnline\bin\roslyn\vbc.rsp
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\roslyn\VBCSCompiler.exe
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\roslyn\VBCSCompiler.exe.config
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Antlr3.Runtime.dll
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\EntityFramework.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\EntityFramework.SqlServer.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.AspNet.Identity.Core.dll
@@ -69,6 +70,8 @@ F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.Owin.Security.Twitter.dl
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.Web.Infrastructure.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Newtonsoft.Json.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Owin.dll
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\PagedList.dll
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\PagedList.Mvc.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Helpers.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Mvc.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Optimization.dll
@@ -77,6 +80,9 @@ F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.WebPages.Deployment.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.WebPages.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.WebPages.Razor.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\WebGrease.dll
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.pdb
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\PagedList.xml
+F:\Projects\web_ban_hang\WebBanHangOnline\bin\PagedList.Mvc.xml
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Helpers.xml
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Mvc.xml
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\System.Web.Optimization.xml
@@ -102,17 +108,16 @@ F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.Owin.Security.MicrosoftA
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.Owin.Security.OAuth.xml
 F:\Projects\web_ban_hang\WebBanHangOnline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.AssemblyReference.cache
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.CreatedDatabase.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateCategory.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.ChangeModels.resources
+F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.CoreCompileInputs.cache
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.CopyComplete
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.dll
 F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.pdb
-F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.CreatedDatabase.resources
-F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
-F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateCategory.resources
-F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
-F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.dll
-F:\Projects\web_ban_hang\WebBanHangOnline\bin\CKFinder.pdb
-F:\Projects\web_ban_hang\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\WebBanHangOnline.dll.config
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\WebBanHangOnline.dll
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\bin\WebBanHangOnline.pdb
@@ -233,3 +238,5 @@ C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHan
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHa.7E290493.Up2Date
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.dll
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.pdb
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.ModifiedField.resources
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateProductCategory.resources
