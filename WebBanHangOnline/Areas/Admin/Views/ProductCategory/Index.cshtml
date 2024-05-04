@@ -1,6 +1,4 @@
-﻿@model PagedList.PagedList<WebBanHangOnline.Models.EF.ProductCategory>
-@using PagedList.Mvc;
-@using PagedList;
+﻿@model IEnumerable<WebBanHangOnline.Models.EF.ProductCategory>
 @{
     ViewBag.Title = "Danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -16,7 +14,7 @@
             <a href="/admin/home" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/news" class="nav-link">@ViewBag.Title</a>
+            <a href="/admin/productcategory" class="nav-link">@ViewBag.Title</a>
         </li>
     </ul>
 }
@@ -26,7 +24,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản lý danh sách tin tức</h1>
+                <h1>Quản lý danh mục sản phẩm</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -52,41 +50,26 @@
                     <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
                         <i class="fas fa-times"></i>
                     </button>*@
-                <a href="/admin/news/add" class="btn btn-info">Thêm mới</a>
+                <a href="/admin/productcategory/add" class="btn btn-info">Thêm mới</a>
                 <a href="#" id="btnDeleteAll" class="btn btn-danger">Xóa</a>
             </div>
         </div>
         <div class="card-body">
-            <div class="row" style="margin-bottom:10px">
-                <div class="col-4">
-                    @using (Html.BeginForm("Index", "ProductCategory", FormMethod.Get, new { }))
-                    {
-                        <div class="input-group input-group-sm">
-                            @Html.TextBox("Searchtext", "", new { @class = "form-control" })
-                            @*<input type="text" name="searchtext" class="form-control"> Dòng này được thay bởi dòng code ngay trên đầu nó*@
-                            <span class="input-group-append">
-                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
-                            </span>
-                        </div>
-                    }
-                </div>
-            </div>
             <table class="table table-bordered table-hover dataTable dtr-inline">
                 <thead>
                     <tr>
                         <th> <input type="checkbox" id="SelectAll" /> </th>
                         <th>STT</th>
-                        <th style="width: 100px;">Hình ảnh</th>
                         <th>Tiêu đề</th>
                         <th>Ngày tạo</th>
-                        @*<th>Hiển thị</th>
-                        <th style="width: 150px;">Hành động</th>*@
+                        @*<th>Hiển thị</th>*@
+                        <th style="width: 150px;">Hành động</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
+                        var i =  1;
                         foreach (var item in Model)
                         {
                             //var strCheck = item.Is ? "<i class= 'fa fa-check text-success'></i>" : "<i class= 'fas fa-times text-danger'></i>";
@@ -99,7 +82,7 @@
                                     <a href="#" data-id="@item.Id" class="btnActive">@Html.Raw(strCheck)</a>
                                 </td>*@
                                 <td>
-                                    <a href="/admin/news/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
+                                    <a href="/admin/productcategory/edit/@item.Id" class="btn btn-sm btn-primary ">Sửa</a>
                                     <a href="#" data-id="@item.Id" class="btn btn-sm btn-danger btnDelete">Xóa</a>
                                 </td>
                             </tr>

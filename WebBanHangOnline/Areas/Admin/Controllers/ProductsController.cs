@@ -28,25 +28,10 @@ namespace WebBanHangOnline.Areas.Admin.Controllers
             return View(items);
         }
 
-        public ActionResult Add() 
+        public ActionResult Add()
         {
+            ViewBag.ProductCategory = new SelectList(dbConect.ProductCategories.ToList(), "Id", "Title");
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Add(ProductCategory model)
-        {
-            if (ModelState.IsValid)
-            {
-                model.CreatedDate = DateTime.Now;
-                model.ModifiedDate = DateTime.Now;
-                model.Alias = WebBanHangOnline.Models.Common.Filter.FilterChar(model.Title);
-                dbConect.ProductCategories.Add(model);
-                dbConect.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(model);
         }
     }
 }

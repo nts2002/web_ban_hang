@@ -3160,6 +3160,7 @@
     <Content Include="Areas\Admin\Views\Products\Add.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3171,6 +3172,22 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Uploads\images\11-2924-1714580742.png" />
+    <Content Include="Uploads\images\1714615268-tien-phong-6467-width645height433.jpg" />
+    <Content Include="Uploads\images\3-kieu-nguoi-co-tiem-nang-tro-thanh-nguoi-giau-co.jpg" />
+    <Content Include="Uploads\images\Cach-de-nguoi-giau-tro-nen-giau-hon-how-the-rich-get-richer-1714125359-75-width1344height896.jpg" />
+    <Content Include="Uploads\images\Cua ngo HN.jpg" />
+    <Content Include="Uploads\images\khach nuoc ngoai.jpg" />
+    <Content Include="Uploads\images\Thuy tien.jpg" />
+    <Content Include="Uploads\images\TPHCM.jpg" />
+    <Content Include="Uploads\_thumbs\Images\11-2924-1714580742.png" />
+    <Content Include="Uploads\_thumbs\Images\1714615268-tien-phong-6467-width645height433.jpg" />
+    <Content Include="Uploads\_thumbs\Images\3-kieu-nguoi-co-tiem-nang-tro-thanh-nguoi-giau-co.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Cach-de-nguoi-giau-tro-nen-giau-hon-how-the-rich-get-richer-1714125359-75-width1344height896.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Cua ngo HN.jpg" />
+    <Content Include="Uploads\_thumbs\Images\khach nuoc ngoai.jpg" />
+    <Content Include="Uploads\_thumbs\Images\Thuy tien.jpg" />
+    <Content Include="Uploads\_thumbs\Images\TPHCM.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3210,6 +3227,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Uploads\files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
