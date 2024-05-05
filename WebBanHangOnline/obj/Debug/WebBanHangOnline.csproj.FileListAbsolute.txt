@@ -233,10 +233,10 @@ C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHan
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateData.resources
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateActive.resources
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.ChangeModels.resources
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.ModifiedField.resources
+C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateProductCategory.resources
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.GenerateResource.cache
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.csproj.CoreCompileInputs.cache
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHa.7E290493.Up2Date
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.dll
 C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.pdb
-C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.ModifiedField.resources
-C:\Projects\WebsiteBanHang\WebBanHangOnline\WebBanHangOnline\obj\Debug\WebBanHangOnline.Migrations.UpdateProductCategory.resources

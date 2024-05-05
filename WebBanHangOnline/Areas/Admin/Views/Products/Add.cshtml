@@ -118,7 +118,8 @@
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Giá</label>
-                                                    @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @placeholder = "Giá sản phẩm" })
+                                                    <input type="text" name="demoEuro" id="demoEuro" class="demo form-control" data-a-sign="€ " data-a-dec="," data-a-sep=".">
+                                                    @Html.HiddenFor(x => x.Price, new { @class = "", @placeholder = "Giá sản phẩm" })
                                                     @Html.ValidationMessageFor(x => x.Price, null, new { @class = "text-danger" })
                                                 </div>
                                             </div>
@@ -183,12 +184,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="genHtmlImage">
-                                                        @*<tr>
-                                                            <td>1</td>
-                                                            <td><img width="80" src="~/Uploads/images/11-2924-1714580742.png" /></td>
-                                                            <td><input type="radio" name="Default" /></td>
-                                                            <td><a href="#" class="btn btn-sm btn-danger">Xóa</a></td>
-                                                        </tr>*@
+                                                       
                                                     </tbody>
                                                 </table>
                                                 <input type="hidden" id="tCurrentId" value="0"/>
@@ -196,7 +192,6 @@
                                         </div>
                                     </div>
                                     <!-- /.tab-pane -->
-
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal">
                                             <div class="form-group row">
@@ -246,6 +241,8 @@
 @section scripts{
     <script>
         $(document).ready(function () {
+            //Xử lý autoNumeric ở phần Giá.
+            $('.demo').autoNumeric('init');
             CKEDITOR.replace('txtDetail', {
                 customConfig: 'content/ckeditor/config.js',
                 extraAllowedContent: 'span',
@@ -258,6 +255,7 @@
             };
             finder.popup();
         }
+
 
         //Xóa ảnh sử dụng class = "btnXoaAnh"
         $('body').on('click', '.btnXoaAnh', function () {
